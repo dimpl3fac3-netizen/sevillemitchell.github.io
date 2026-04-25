@@ -1,0 +1,24 @@
+{
+  "formatVersion": 1,
+  "passTypeIdentifier": "pass.solar.king",
+  "serialNumber": "SK-0001",
+  "teamIdentifier": "YOUR_TEAM_ID",
+  "organizationName": "Chrono Sentinel",
+  "description": "Vault Access",
+  "foregroundColor": "rgb(255,255,255)",
+  "backgroundColor": "rgb(0,0,0)",
+  "generic": {
+    "primaryFields": [
+      {
+        "label": "ETH BALANCE",
+        "value": "Ξ 0.0000"
+      }
+    ],
+    "secondaryFields": [
+      {
+        "label": "STATUS",
+        "value": "Sentinel Active"
+      }
+    ]
+  }
+}
