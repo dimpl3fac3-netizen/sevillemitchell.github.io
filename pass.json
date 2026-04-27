@@ -1,0 +1,17 @@
+{
+  "formatVersion": 1,
+  "organizationName": "Chrono OS",
+  "description": "Chrono Identity Pass",
+  "serialNumber": "COS-001",
+  "teamIdentifier": "YOUR_TEAM_ID",
+  "passTypeIdentifier": "pass.chrono.id",
+  "generic": {
+    "primaryFields": [
+      {
+        "key": "user",
+        "label": "User",
+        "value": "Solar King"
+      }
+    ]
+  }
+}
