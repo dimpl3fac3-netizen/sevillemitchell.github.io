@@ -11,6 +11,7 @@
         --text: #edf2ff;
         --accent: #62e8ff;
         --gold: #f9d97b;
+        --success: #9cffc7;
       }
       * { box-sizing: border-box; }
       body {
@@ -58,6 +59,70 @@
         padding: 1rem;
       }
       code { color: var(--accent); font-weight: 600; }
+      .payment-slip {
+        margin-top: 1.25rem;
+        display: grid;
+        grid-template-columns: minmax(150px, 0.45fr) minmax(220px, 1fr);
+        gap: 1rem;
+        align-items: stretch;
+        background:
+          linear-gradient(135deg, rgba(98, 232, 255, 0.12), rgba(249, 217, 123, 0.08)),
+          var(--card);
+        border: 1px solid rgba(156, 255, 199, 0.35);
+        border-radius: 18px;
+        padding: 1rem;
+      }
+      .qr-card {
+        display: grid;
+        place-items: center;
+        min-height: 180px;
+        background: #f8fbff;
+        border-radius: 14px;
+        padding: 0.85rem;
+        box-shadow: inset 0 0 0 1px rgba(6, 7, 13, 0.12);
+      }
+      .qr-code {
+        width: min(152px, 100%);
+        aspect-ratio: 1;
+        background:
+          linear-gradient(#07101c 0 0) 10% 10% / 24% 24% no-repeat,
+          linear-gradient(#07101c 0 0) 66% 10% / 24% 24% no-repeat,
+          linear-gradient(#07101c 0 0) 10% 66% / 24% 24% no-repeat,
+          linear-gradient(90deg, #07101c 50%, transparent 0) 0 0 / 16px 16px,
+          linear-gradient(#07101c 50%, transparent 0) 0 0 / 16px 16px,
+          #f8fbff;
+        border: 8px solid #f8fbff;
+        outline: 2px solid #07101c;
+      }
+      .slip-details h2 { margin-top: 0; }
+      .verification-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: #06131a;
+        background: var(--success);
+        border-radius: 999px;
+        padding: 0.35rem 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+      .receipt-lines {
+        display: grid;
+        gap: 0.45rem;
+        margin: 0.9rem 0 0;
+      }
+      .receipt-lines div {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: 1px dashed rgba(255,255,255,0.16);
+        padding-bottom: 0.35rem;
+      }
+      .receipt-lines dt { color: rgba(237,242,255,0.72); }
+      .receipt-lines dd { margin: 0; font-weight: 700; text-align: right; }
+      @media (max-width: 640px) {
+        .payment-slip { grid-template-columns: 1fr; }
+      }
     </style>
   </head>
   <body>
@@ -102,6 +167,34 @@
             — encoded for your domain narrative and launch identity.
           </p>
         </article>
+      </section>
+
+      <section class="payment-slip" aria-labelledby="payment-verification-title">
+        <div class="qr-card" aria-label="QR-coded payment verification seal">
+          <div class="qr-code" role="img" aria-label="QR code pattern for receipt verification"></div>
+        </div>
+        <div class="slip-details">
+          <span class="verification-status">🔳 Verified Payment Slip</span>
+          <h2 id="payment-verification-title">QR-Coded Payment Verification</h2>
+          <p>
+            Scan-ready confirmation slip for Universal Banking LLC continuity,
+            linking receipt identity, authorization phrase, and timeline audit status.
+          </p>
+          <dl class="receipt-lines">
+            <div>
+              <dt>Reference</dt>
+              <dd>CS-PAY-0001</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>Verification Active</dd>
+            </div>
+            <div>
+              <dt>Authorization</dt>
+              <dd>Solar King</dd>
+            </div>
+          </dl>
+        </div>
       </section>
     </main>
   </body>
