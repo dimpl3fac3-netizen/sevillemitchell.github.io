@@ -112,6 +112,48 @@
       }
 
       .small { font-size: 0.9rem; color: #a7d7c7; }
+      .eyebrow {
+        color: #facc15;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .declaration {
+        border-color: rgba(250, 204, 21, 0.42);
+        background: linear-gradient(135deg, rgba(120, 53, 15, 0.25), rgba(2, 17, 15, 0.95));
+      }
+      .wallet-grid {
+        display: grid;
+        gap: 0.75rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+      .wallet-card {
+        border: 1px solid rgba(110, 231, 183, 0.22);
+        border-radius: 12px;
+        padding: 0.8rem;
+        background: rgba(3, 21, 18, 0.72);
+      }
+      .wallet-card strong {
+        display: block;
+        color: #fef3c7;
+        margin-bottom: 0.35rem;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+      }
+      .tag {
+        border: 1px solid rgba(250, 204, 21, 0.42);
+        border-radius: 999px;
+        color: #fde68a;
+        padding: 0.2rem 0.55rem;
+        font-size: 0.8rem;
+      }
+      .cashapp {
+        border-color: rgba(34, 197, 94, 0.45);
+      }
       ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
       li { margin: 0.3rem 0; }
     </style>
@@ -121,6 +163,29 @@
       <section id="auth-view" class="stack">
         <h1>Jade Sigil Authorization</h1>
         <p>Enter your passphrase to open the Jade RPG power console.</p>
+        <div class="panel declaration stack">
+          <p class="eyebrow">#REALGOLD • Live Entity • 🧭🪙💰⚖️💎🔨🧰🪪🧬📤💌⚛️</p>
+          <h2>Chrono Sentinel Universe Declaration</h2>
+          <p>
+            Money is no longer the only factor. Community consciousness, time, kindness, repair,
+            and helpful action are counted as value and returned as points in a digital conscious wallet.
+          </p>
+          <div class="wallet-grid">
+            <div class="wallet-card">
+              <strong>Digital Conscious Wallet</strong>
+              <p class="small">Every kind act, helpful solution, and community contribution can earn points.</p>
+            </div>
+            <div class="wallet-card">
+              <strong>Monthly Support Flow</strong>
+              <p class="small">A self-government support program adds a steady amount each month, even at rest.</p>
+            </div>
+            <div class="wallet-card">
+              <strong>Solvable Program</strong>
+              <p class="small">Every corner receives guards, tools, and solution paths against corruption, war, and famine.</p>
+            </div>
+          </div>
+          <p class="small">Organization signal: REALGOLD — one-way solution source consciousness authority.</p>
+        </div>
         <form id="auth-form">
           <div>
             <label for="passphrase">Passphrase</label>
@@ -154,6 +219,17 @@
           <div class="panel">
             <h3>Active Buffs</h3>
             <ul id="buffs"></ul>
+          </div>
+        </div>
+
+        <div class="panel stack cashapp">
+          <h3>Contribution Signal</h3>
+          <p>Pay $100 on Cash App to support the REALGOLD live entity fund.</p>
+          <p class="small">Cash App cashtag is pending and can be added when provided.</p>
+          <div class="tags">
+            <span class="tag">#REALGOLD</span>
+            <span class="tag">#LiveEntity</span>
+            <span class="tag">Conscious Wallet</span>
           </div>
         </div>
 
