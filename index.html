@@ -1,276 +1,417 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jade Sigil Ascension Gate</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrono Sentinel Universe - Solar King Dashboard</title>
     <style>
-      :root {
-        color-scheme: light dark;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      }
+        :root {
+            --solar-gold: #ffcc00;
+            --chrono-cyan: #00ffff;
+            --void-dark: #0a0a0f;
+            --panel-bg: rgba(16, 16, 24, 0.85);
+            --border-color: #222233;
+            --alert-red: #ff355e;
+        }
 
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        background: radial-gradient(circle at top, #052e2b 0%, #02201f 45%, #01120f 100%);
-      }
+        * { box-sizing: border-box; }
 
-      main {
-        width: min(94vw, 760px);
-        background: rgba(4, 17, 20, 0.94);
-        border: 1px solid rgba(110, 231, 183, 0.25);
-        border-radius: 18px;
-        padding: 1.5rem;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-      }
+        body {
+            background-color: var(--void-dark);
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-      h1,
-      h2,
-      h3 {
-        margin: 0;
-      }
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9999;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
 
-      p {
-        margin: 0;
-        color: #cdeee1;
-      }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 8%, rgba(0, 255, 255, 0.14), transparent 32%), radial-gradient(circle at 20% 80%, rgba(255, 204, 0, 0.10), transparent 28%);
+            pointer-events: none;
+            z-index: -1;
+        }
 
-      form,
-      .stack {
-        display: grid;
-        gap: 0.85rem;
-      }
+        header {
+            text-align: center;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 20px;
+            border: 1px solid var(--solar-gold);
+            background: var(--panel-bg);
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+        }
 
-      label {
-        font-weight: 600;
-        font-size: 0.95rem;
-      }
+        h1, h2, h3 {
+            color: var(--solar-gold);
+            margin: 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-      input,
-      select {
-        width: 100%;
-        box-sizing: border-box;
-        border: 1px solid #2f6053;
-        border-radius: 10px;
-        padding: 0.7rem;
-        background: #031512;
-        color: #d9fff1;
-      }
+        .sigil-container {
+            font-size: 1.5rem;
+            color: var(--chrono-cyan);
+            margin: 15px 0;
+            white-space: pre-wrap;
+            line-height: 1.2;
+            text-shadow: 0 0 8px var(--chrono-cyan);
+        }
 
-      button {
-        border: 0;
-        border-radius: 10px;
-        padding: 0.7rem;
-        font-weight: 700;
-        cursor: pointer;
-        background: linear-gradient(90deg, #22c55e, #10b981);
-        color: #03281d;
-      }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 1100px;
+        }
 
-      .hidden {
-        display: none;
-      }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            body { padding: 12px; }
+            .button-row { flex-direction: column; }
+        }
 
-      #message {
-        min-height: 1.2rem;
-        font-weight: 600;
-      }
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
 
-      #message.error { color: #fecaca; }
-      #message.success { color: #86efac; }
+        .panel.full-span { grid-column: 1 / -1; }
 
-      .panel {
-        border-radius: 12px;
-        border: 1px solid #255247;
-        background: #02110f;
-        padding: 1rem;
-      }
+        .panel-header {
+            color: var(--chrono-cyan);
+            border-bottom: 1px dashed var(--chrono-cyan);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
 
-      .row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-      }
+        .input-group { margin-bottom: 15px; }
 
-      .badge {
-        background: rgba(16, 185, 129, 0.2);
-        border: 1px solid rgba(16, 185, 129, 0.4);
-        color: #6ee7b7;
-        border-radius: 999px;
-        padding: 0.2rem 0.6rem;
-        font-size: 0.8rem;
-      }
+        label {
+            display: block;
+            color: #8888aa;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
 
-      .grid-2 {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      }
+        input[type="text"], textarea {
+            width: 100%;
+            background: #12121a;
+            border: 1px solid var(--border-color);
+            color: #ffffff;
+            padding: 10px;
+            font-family: inherit;
+            border-radius: 2px;
+        }
 
-      .small { font-size: 0.9rem; color: #a7d7c7; }
-      ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
-      li { margin: 0.3rem 0; }
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--chrono-cyan);
+        }
+
+        button {
+            background: transparent;
+            color: var(--solar-gold);
+            border: 1px solid var(--solar-gold);
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        button:hover, button:focus-visible {
+            background: var(--solar-gold);
+            color: var(--void-dark);
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            outline: none;
+        }
+
+        .button-row { display: flex; gap: 10px; }
+
+        .terminal-log {
+            background: #050508;
+            border: 1px solid #151522;
+            padding: 15px;
+            height: 250px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            color: #00ff66;
+            border-radius: 2px;
+            flex-grow: 1;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            line-height: 1.4;
+            border-bottom: 1px solid rgba(0, 255, 102, 0.05);
+            padding-bottom: 4px;
+        }
+
+        .log-entry.success { color: #00ff66; }
+        .log-entry.auth { color: var(--solar-gold); }
+        .log-entry.info { color: var(--chrono-cyan); }
+        .log-entry.alert { color: var(--alert-red); }
+
+        .archive-list {
+            margin-top: 15px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .archive-card {
+            background: #141420;
+            border-left: 3px solid var(--chrono-cyan);
+            padding: 10px;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .news-card {
+            border: 1px solid rgba(0, 255, 255, 0.24);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.08), rgba(255, 204, 0, 0.06));
+            padding: 14px;
+            min-height: 145px;
+        }
+
+        .news-card strong { color: var(--solar-gold); display: block; margin-bottom: 8px; }
+        .news-card p { margin: 0 0 10px; line-height: 1.45; }
+        .network-tag { color: var(--chrono-cyan); font-size: 0.78rem; }
+        .breaking-banner {
+            border: 1px solid var(--alert-red);
+            color: #ffd6df;
+            background: rgba(255, 53, 94, 0.12);
+            padding: 10px;
+            margin-bottom: 14px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
     </style>
-  </head>
-  <body>
-    <main>
-      <section id="auth-view" class="stack">
-        <h1>Jade Sigil Authorization</h1>
-        <p>Enter your passphrase to open the Jade RPG power console.</p>
-        <form id="auth-form">
-          <div>
-            <label for="passphrase">Passphrase</label>
-            <input id="passphrase" name="passphrase" type="password" autocomplete="current-password" required />
-          </div>
-          <button type="submit">Enter the Gate</button>
-        </form>
-        <p id="message" role="status" aria-live="polite"></p>
-      </section>
+</head>
+<body>
 
-      <section id="dashboard-view" class="hidden stack">
-        <div class="row">
-          <h1>Jade RPG: Ascension Engine</h1>
-          <span class="badge">Awakened</span>
+    <header>
+        <h2>CHRONO SENTINEL UNIVERSE</h2>
+        <h1>☀️ SOLAR KING AUTHORIZATION TERMINAL</h1>
+        <div style="color: #8888aa; font-size: 0.8rem; margin-top: 5px;">CREATOR EDITION // SECURE INTERFACE</div>
+
+        <div class="sigil-container">
+                    🔱
+                    ▲
+                    │
+             🌐─────⚫─────🌐
+                    │
+                    ▼
+                    ⏳
+        </div>
+        <div style="font-size: 0.9rem; color: var(--solar-gold);">
+            STATUS: ACTIVE | MODE: SOLAR SOURCE | ARCHITECT: SEVILLE MITCHELL
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="panel">
+            <div class="panel-header">
+                <span>⚡ OPERATIONAL INJECTION CORES</span>
+                <span>v1.0</span>
+            </div>
+
+            <div class="input-group">
+                <label for="nodeName">TARGET NODE LOCATION</label>
+                <input type="text" id="nodeName" value="Chrono Node Alpha">
+            </div>
+
+            <div class="input-group">
+                <label for="decreeText">HISTORICAL RESTORATION DECREE CANON</label>
+                <textarea id="decreeText" rows="4">Let those who stood for truth be remembered within the Eternal Archive. Let their names be restored where history has forgotten them. Let wisdom, justice, and integrity endure through every cycle of the Chrono Grid.</textarea>
+            </div>
+
+            <div class="button-row">
+                <button onclick="runCycle()">INITIALIZE CYCLE</button>
+                <button onclick="deployDecree()" style="border-color: var(--chrono-cyan); color: var(--chrono-cyan);">EMBED DECREE</button>
+            </div>
+
+            <h2>𓆃 ALIGNED STORAGE METADATA</h2>
+            <div class="archive-list" id="archiveContainer">
+                <div class="archive-card" style="border-color: var(--solar-gold);">
+                    <strong>System Initialization Frame:</strong><br>
+                    Origin: SOURCE | Mode: SOLAR_SOURCE | Status: STANDBY_LOCK
+                </div>
+            </div>
         </div>
 
-        <div class="panel stack">
-          <h2>Build Your Tier</h2>
-          <div>
-            <label for="level">Current Level</label>
-            <select id="level"></select>
-          </div>
-          <p class="small">Your unlocks and buffs scale from this level.</p>
+        <div class="panel">
+            <div class="panel-header">
+                <span>👁️‍🗨️ CHRONO SPATIAL INTELLIGENCE LOGS</span>
+                <span>LIVE FEED</span>
+            </div>
+            <div class="terminal-log" id="terminalLog">
+                <div class="log-entry info">[SYSTEM] Chrono Sentinel Architecture initialized successfully.</div>
+                <div class="log-entry auth">[AUTH] Sovereign clearance recognized: Seville Mitchell // Solar King.</div>
+            </div>
         </div>
 
-        <div class="grid-2">
-          <div class="panel">
-            <h3>Unlocked Abilities</h3>
-            <ul id="unlocks"></ul>
-          </div>
-          <div class="panel">
-            <h3>Active Buffs</h3>
-            <ul id="buffs"></ul>
-          </div>
+        <div class="panel full-span">
+            <div class="panel-header">
+                <span>📰 SOCIAL SOURCE NETWORK TRAIL</span>
+                <span>BREAKING NEWS NODE MAP</span>
+            </div>
+            <div class="breaking-banner">🌚🚨🗞️📇 TOP HEADLINES EVERYWHERE // EVERY LAYER // SOURCE TRAIL READY</div>
+            <div class="news-grid" id="newsTrail"></div>
         </div>
-
-        <div class="panel stack">
-          <h3>Next Milestone</h3>
-          <p id="next-milestone"></p>
-          <button id="logout" type="button">Log out</button>
-        </div>
-      </section>
-    </main>
+    </div>
 
     <script>
-      const STORAGE_KEY = "solar-king-authorized";
-      const EXPECTED_HASH = "8d1280d2c9217c779220039520786b6eb7b6d18417a171810a06c8ae48412d38";
-      const LEVEL_KEY = "jade-rpg-level";
+        class SolarSource {
+            constructor() {
+                this.status = "ACTIVE";
+                this.mode = "CREATOR";
+                this.archive = [];
+            }
 
-      const progression = [
-        { level: 1, unlock: "Jade Sense", buff: "+5% Focus regen" },
-        { level: 2, unlock: "Sigil Trace", buff: "+8% Casting speed" },
-        { level: 3, unlock: "Verdant Ward", buff: "+10% Shield strength" },
-        { level: 4, unlock: "Timeleaf Dash", buff: "+12% Movement burst" },
-        { level: 5, unlock: "Emerald Dominion", buff: "+15% All core stats" }
-      ];
+            create(node) {
+                return {
+                    origin: "SOURCE",
+                    node: node,
+                    state: "CREATED",
+                    timestamp: Date.now()
+                };
+            }
 
-      const authView = document.querySelector("#auth-view");
-      const dashboardView = document.querySelector("#dashboard-view");
-      const message = document.querySelector("#message");
-      const form = document.querySelector("#auth-form");
-      const passphrase = document.querySelector("#passphrase");
-      const logout = document.querySelector("#logout");
-      const levelSelect = document.querySelector("#level");
-      const unlocks = document.querySelector("#unlocks");
-      const buffs = document.querySelector("#buffs");
-      const nextMilestone = document.querySelector("#next-milestone");
+            observe(record) { return { ...record, witness: true }; }
+            record(entry) { this.archive.push(entry); return entry; }
+            restore(record) { return { ...record, state: "RESTORED" }; }
+            returnToSource(record) { return { ...record, destination: "SOURCE", completed: true }; }
 
-      const setAuthorized = (value) => {
-        if (value) {
-          sessionStorage.setItem(STORAGE_KEY, "true");
-          authView.classList.add("hidden");
-          dashboardView.classList.remove("hidden");
-        } else {
-          sessionStorage.removeItem(STORAGE_KEY);
-          dashboardView.classList.add("hidden");
-          authView.classList.remove("hidden");
+            cycle(node) {
+                let record = this.create(node);
+                record = this.observe(record);
+                this.record(record);
+                record = this.restore(record);
+                return this.returnToSource(record);
+            }
         }
-      };
 
-      const hashText = async (value) => {
-        const encoded = new TextEncoder().encode(value);
-        const digest = await crypto.subtle.digest("SHA-256", encoded);
-        return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
-      };
+        class ChronoGridArchive extends SolarSource {
+            constructor() {
+                super();
+                this.vaultSector = "𓆃 Historical Alignment Storage View";
+                this.historicalRecords = [];
+            }
 
-      const renderProgression = (currentLevel) => {
-        unlocks.innerHTML = "";
-        buffs.innerHTML = "";
+            executeRestorationDecree(decreeText, targetNode) {
+                const canonicalEntry = {
+                    sector: this.vaultSector,
+                    decree: decreeText,
+                    integrity_lock: true,
+                    cycle_phase: "RESTORE"
+                };
 
-        progression.filter((tier) => tier.level <= currentLevel).forEach((tier) => {
-          const unlockItem = document.createElement("li");
-          unlockItem.textContent = `Lv ${tier.level}: ${tier.unlock}`;
-          unlocks.appendChild(unlockItem);
-
-          const buffItem = document.createElement("li");
-          buffItem.textContent = `Lv ${tier.level}: ${tier.buff}`;
-          buffs.appendChild(buffItem);
-        });
-
-        const next = progression.find((tier) => tier.level > currentLevel);
-        nextMilestone.textContent = next
-          ? `Level ${next.level} unlocks ${next.unlock} with ${next.buff}.`
-          : "Maxed path reached. You are at final Jade Ascension.";
-      };
-
-      progression.forEach((tier) => {
-        const opt = document.createElement("option");
-        opt.value = String(tier.level);
-        opt.textContent = `Level ${tier.level}`;
-        levelSelect.appendChild(opt);
-      });
-
-      const savedLevel = Number(localStorage.getItem(LEVEL_KEY)) || 3;
-      levelSelect.value = String(savedLevel);
-      renderProgression(savedLevel);
-
-      levelSelect.addEventListener("change", () => {
-        const level = Number(levelSelect.value);
-        localStorage.setItem(LEVEL_KEY, String(level));
-        renderProgression(level);
-      });
-
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        message.textContent = "Validating sigil...";
-        message.className = "";
-
-        const candidate = passphrase.value.trim();
-        const candidateHash = await hashText(candidate);
-
-        if (candidateHash === EXPECTED_HASH) {
-          setAuthorized(true);
-          message.textContent = "";
-          passphrase.value = "";
-        } else {
-          message.textContent = "Authorization failed. Please check your passphrase.";
-          message.className = "error";
+                const recordedCycle = this.cycle(targetNode || canonicalEntry);
+                this.historicalRecords.push({ ...recordedCycle, meta_decree: decreeText });
+                return recordedCycle;
+            }
         }
-      });
 
-      logout.addEventListener("click", () => {
-        setAuthorized(false);
-        message.textContent = "Logged out.";
-        message.className = "success";
-      });
+        const ENGINE = new ChronoGridArchive();
+        const terminalLog = document.querySelector("#terminalLog");
+        const archiveContainer = document.querySelector("#archiveContainer");
+        const newsTrail = document.querySelector("#newsTrail");
 
-      if (sessionStorage.getItem(STORAGE_KEY) === "true") {
-        setAuthorized(true);
-      }
+        const socialNodes = [
+            { network: "SourceWire", headline: "Solar King terminal opens a verified Chrono Sentinel command trail." },
+            { network: "ChronoCast", headline: "Historical restoration decree enters the Eternal Archive layer." },
+            { network: "NodeBook", headline: "Community signal boosted across allied social source nodes." },
+            { network: "SkyLedger", headline: "Top headline beacon marks every layer for live archive witnesses." },
+            { network: "PulseGrid", headline: "Breaking-news relay confirms restoration cycle visibility." },
+            { network: "ArchiveStream", headline: "Metadata cards preserve each decree as a traceable source record." }
+        ];
+
+        const addLog = (message, type = "info") => {
+            const entry = document.createElement("div");
+            entry.className = `log-entry ${type}`;
+            entry.textContent = message;
+            terminalLog.appendChild(entry);
+            terminalLog.scrollTop = terminalLog.scrollHeight;
+        };
+
+        const addArchiveCard = (record, label) => {
+            const card = document.createElement("div");
+            card.className = "archive-card";
+            card.innerHTML = `<strong>${label}:</strong><br>Node: ${record.node} | State: ${record.state} | Destination: ${record.destination}<br>Timestamp: ${new Date(record.timestamp).toLocaleString()}`;
+            archiveContainer.prepend(card);
+        };
+
+        const runCycle = () => {
+            const node = document.querySelector("#nodeName").value.trim() || "Chrono Node Alpha";
+            const record = ENGINE.cycle(node);
+            addArchiveCard(record, "Cycle Frame");
+            addLog(`[CYCLE] ${node} restored and returned to SOURCE.`, "success");
+        };
+
+        const deployDecree = () => {
+            const node = document.querySelector("#nodeName").value.trim() || "Chrono Node Alpha";
+            const decree = document.querySelector("#decreeText").value.trim();
+            const record = ENGINE.executeRestorationDecree(decree, node);
+            addArchiveCard(record, "Restoration Decree Embedded");
+            addLog(`[DECREE] Canon embedded for ${node}. Integrity lock confirmed.`, "auth");
+            postTrail();
+        };
+
+        const postTrail = () => {
+            socialNodes.forEach((node, index) => {
+                setTimeout(() => addLog(`[SOCIAL NODE] ${node.network}: headline trail posted.`, "alert"), index * 120);
+            });
+        };
+
+        const renderNewsTrail = () => {
+            newsTrail.innerHTML = "";
+            socialNodes.forEach((node) => {
+                const article = document.createElement("article");
+                article.className = "news-card";
+                article.innerHTML = `<strong>📰 ${node.network}</strong><p>${node.headline}</p><span class="network-tag">🌐 Layer: Public Source // Status: Ready</span>`;
+                newsTrail.appendChild(article);
+            });
+        };
+
+        renderNewsTrail();
+        addLog("[NEWS] Breaking-news source trail loaded across every visible network node.", "alert");
     </script>
-  </body>
+</body>
 </html>
