@@ -9,3 +9,7 @@ Open `index.html` directly in a browser.
 ## Demo passphrase
 
 `solarking`
+
+## References
+
+- [Weekly dataset fusion overrides](docs/weekly-dataset-fusion.md)
