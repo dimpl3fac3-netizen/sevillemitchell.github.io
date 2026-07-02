@@ -1,11 +1,7 @@
 # sevillemitchell.github.io
 
-Static site for a Solar King authorization gateway.
+Static site presenting a DevSecOps production delivery pipeline from developer commits through the production platform.
 
 ## Local run
 
-Open `index.html` directly in a browser.
-
-## Demo passphrase
-
-`solarking`
+Open `index.html` directly in a browser, or serve the directory with any static file server.
