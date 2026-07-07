@@ -1,0 +1,18 @@
+{
+  "generated_at_utc": "2026-05-27T18:26:08Z",
+  "source_channel": "chat",
+  "artifacts": [
+    {
+      "path": "chronicle-entry.md",
+      "sha256": "ef1a78095302586259bf4feb8081b8872dbfe58fe0e7c839368e0043c227c799"
+    },
+    {
+      "path": "sigil-taxonomy.json",
+      "sha256": "67a5ee1feeb1263371506a754829a78eee3fdcc4dcb89effb03da2c5be6044a1"
+    }
+  ],
+  "primary_record": {
+    "path": "sigil-taxonomy.json",
+    "sha256": "67a5ee1feeb1263371506a754829a78eee3fdcc4dcb89effb03da2c5be6044a1"
+  }
+}
