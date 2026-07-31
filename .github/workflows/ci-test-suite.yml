@@ -36,3 +36,19 @@ jobs:
 
       - name: Check HTML Validation
         run: npx html-validator-cli --file=solar-throne.html
+
+      - name: Package Solar Throne ZIP
+        if: github.event_name == 'push'
+        run: |
+          mkdir -p dist
+          cp solar-throne.html dist/index.html
+          zip -r solar-throne-site.zip dist
+
+      - name: Upload Solar Throne ZIP
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: solar-throne-site
+          path: solar-throne-site.zip
+          if-no-files-found: error
+          retention-days: 30
