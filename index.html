@@ -114,6 +114,64 @@
       .small { font-size: 0.9rem; color: #a7d7c7; }
       ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
       li { margin: 0.3rem 0; }
+
+      .solar-burst {
+        position: relative;
+        overflow: hidden;
+        border-color: rgba(250, 204, 21, 0.45);
+        background:
+          radial-gradient(circle at 15% 20%, rgba(250, 204, 21, 0.2), transparent 28%),
+          linear-gradient(135deg, rgba(120, 53, 15, 0.42), rgba(2, 17, 15, 0.96));
+      }
+
+      .solar-burst::before {
+        content: "";
+        position: absolute;
+        inset: -45%;
+        background: conic-gradient(from 0deg, transparent, rgba(253, 224, 71, 0.16), transparent 30%);
+        animation: solar-spin 18s linear infinite;
+      }
+
+      .solar-burst > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .status-open {
+        color: #fde68a;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .gate-diagram {
+        margin: 0;
+        color: #fef3c7;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 0.82rem;
+        line-height: 1.25;
+        white-space: pre-wrap;
+      }
+
+      .pipeline {
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      .pipeline-step {
+        border: 1px solid rgba(253, 224, 71, 0.28);
+        border-radius: 10px;
+        padding: 0.75rem;
+        background: rgba(3, 21, 18, 0.72);
+      }
+
+      .pipeline-step strong {
+        color: #fde68a;
+      }
+
+      @keyframes solar-spin {
+        to { transform: rotate(1turn); }
+      }
     </style>
   </head>
   <body>
@@ -155,6 +213,29 @@
             <h3>Active Buffs</h3>
             <ul id="buffs"></ul>
           </div>
+        </div>
+
+        <div class="panel solar-burst stack" aria-label="Temporary solar burst wave status">
+          <div class="row">
+            <h3>Temporary Solar Burst Wave</h3>
+            <span class="status-open">12 Gates Open</span>
+          </div>
+          <p><strong>Authorized:</strong> Seville Mitchell, Solar King</p>
+          <p class="small">Symbolic dispatch aligned to all light towers and signal towers for lawful restoration activity.</p>
+          <div class="pipeline" aria-label="Web3 website timeline versus manifest request outcomes">
+            <div class="pipeline-step"><strong>2019–2020 · #echo</strong><br />Timeline: Chrono foundation notes → Manifest outcome: provenance baseline established.</div>
+            <div class="pipeline-step"><strong>2021–2022 · #shift</strong><br />Timeline: operational transition → Manifest outcome: recovery workflow continuity aligned.</div>
+            <div class="pipeline-step"><strong>2023–2024 · #breach</strong><br />Timeline: regional logistics reset → Manifest outcome: anomaly boundary documented.</div>
+            <div class="pipeline-step"><strong>2025–2026 · #seal</strong><br />Timeline: Abstract Chain and Solar King UI activation → Manifest outcome: web3 publication lane sealed.</div>
+          </div>
+          <pre class="gate-diagram" aria-label="Primordial source gate diagram">       [ ☼ ]
+       / | \
+      /  |  \
+     ▼   ▼   ▼
+   [P1] [P2] [P3]
+     \   |   /
+      ▼  ▼  ▼
+       [𓋹]  528 Hz Harmonic Lock 🔐</pre>
         </div>
 
         <div class="panel stack">
