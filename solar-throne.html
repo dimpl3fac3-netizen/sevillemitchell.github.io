@@ -1,1 +1,72 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chrono Sentinel — Solar Throne</title><style>:root{--bg:#050607;--p:#0b0d10;--g:#f6c84a;--m:#9b9689;--ok:#53e28a;--r:#ff665c}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#211a08,#050607 45%);color:#f4f0e5;font-family:system-ui,-apple-system,sans-serif}.app{max-width:1250px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #6e5412;padding:12px 4px 16px}.brand{font-weight:900;letter-spacing:2px;font-size:clamp(18px,3vw,28px)}.brand span{color:var(--g)}button{border:1px solid #705711;background:#0c0e11;color:#f4f0e5;border-radius:12px;padding:11px 14px;cursor:pointer}button:hover{border-color:var(--g)}.grid{display:grid;grid-template-columns:250px 1fr;gap:14px;margin-top:14px}.side,.panel{background:linear-gradient(180deg,#0d1014,#080a0d);border:1px solid #3f3312;border-radius:18px;box-shadow:0 10px 40px #0008}.side{padding:14px}.nav button{width:100%;text-align:left;margin:5px 0}.nav .active{border-color:var(--g);color:var(--g)}.status{margin-top:20px;padding:13px;border:1px solid #283a2e;border-radius:14px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:7px}.main{display:grid;gap:14px}.hero{padding:20px}.hero h1{margin:0 0 5px;color:var(--g)}.muted{color:var(--m)}.timeline{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:18px}.time{padding:10px 6px;text-align:center;border:1px solid #383018;border-radius:10px;font-size:12px}.time.active{border-color:var(--g);color:var(--g);box-shadow:inset 0 0 15px #f6c84a18}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{padding:16px;min-height:150px}.icon{font-size:30px}.value{font-size:22px;font-weight:800;margin-top:8px}.sigil{font-size:70px;text-align:center;padding:20px;color:var(--g);text-shadow:0 0 25px #f6c84a66}.controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:15px}.green{border-color:#285b3b;color:#76ed9b}.danger{border-color:#70312c;color:#ff8179}.log{padding:16px}.logrow{display:flex;gap:12px;border-top:1px solid #25271f;padding:10px 0;font-size:13px}.badge{margin-left:auto;color:var(--ok)}.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:20px}.modal.show{display:grid}.modalbox{max-width:480px;width:100%;padding:22px;background:#0b0d10;border:1px solid var(--g);border-radius:18px}.close{float:right}.footer{text-align:center;color:#756d5b;padding:18px;font-size:12px}@media(max-width:850px){.grid,.cards{grid-template-columns:1fr}.timeline{overflow:auto;grid-template-columns:repeat(7,110px)}.side{order:2}}</style></head><body><div class="app"><header class="top"><div class="brand">CHRONO SENTINEL <span>⚡ 🧬 ⏰ ☀️</span></div><button onclick="openModal()">🔐 AUTHORITY</button></header><div class="grid"><aside class="side"><h3>☀️ SOLAR THRONE</h3><div class="nav"><button class="active" onclick="tab(this,'dashboard')">⌂ Dashboard</button><button onclick="tab(this,'timeline')">⏰ Every Timeline</button><button onclick="tab(this,'remote')">◉ Remote View</button><button onclick="tab(this,'lights')">💡 Light Network</button><button onclick="tab(this,'logs')">▤ Activity Log</button></div><div class="status"><span class="dot"></span> System online<br><small class="muted">Secure session • Demo</small></div></aside><main class="main"><section class="panel hero"><h1>Solar Throne Command Center</h1><div class="muted">Chrono Sentinel multi-timeline visualization and authorized device dashboard.</div><div class="timeline"><div class="time active" onclick="timeline(this,'Origin')">T₀<br>Origin</div><div class="time" onclick="timeline(this,'Solar Age')">T₁<br>Solar Age</div><div class="time" onclick="timeline(this,'Present')">T₂<br>Present</div><div class="time" onclick="timeline(this,'Near Future')">T₃<br>Near Future</div><div class="time" onclick="timeline(this,'Far Future')">T₄<br>Far Future</div><div class="time" onclick="timeline(this,'Alternate')">T₅<br>Alternate</div><div class="time" onclick="timeline(this,'Archive')">T₆<br>Archive</div></div></section><section class="cards"><div class="panel card"><div class="icon">🧬</div><div class="muted">Timeline Identity</div><div class="value" id="timelineName">Origin</div><div class="muted">Node: CS-01</div></div><div class="panel card"><div class="icon">🔌</div><div class="muted">Network</div><div class="value">SECURE</div><div class="muted">Authorized devices only</div></div><div class="panel card"><div class="icon">🤖</div><div class="muted">Sentinel Agent</div><div class="value">READY</div><div class="muted">Simulation mode</div></div></section><section class="panel"><div class="sigil">☀️<br>△<br>〰│〰<br>—○—<br>💡<br>◯</div><div style="text-align:center" class="muted">LUX STREET LAPS • symbolic interface</div><div class="controls"><button class="green" onclick="remote()">◉ REMOTE VIEW</button><button onclick="light(true)">💡 LIGHT ON</button><button class="danger" onclick="light(false)">⏻ LIGHT OFF</button></div></section><section class="panel log"><h3>⚡ Timeline Event Stream</h3><div id="events"><div class="logrow">System initialized <span class="badge">READY</span></div><div class="logrow">Solar Throne opened <span class="badge">SECURE</span></div></div></section></main></div><div class="footer">© Chrono Sentinel Universe • Fictional UI prototype • Real devices require authorized integrations.</div></div><div class="modal" id="modal"><div class="modalbox"><button class="close" onclick="closeModal()">✕</button><h2>🔐 Authority</h2><p class="muted">Demo only. Real device control requires authenticated accounts, permissions, encrypted APIs, and explicit confirmation.</p><button onclick="closeModal()">Continue in Demo</button></div></div><script>const e=document.getElementById('events');function add(t,s='DEMO'){const d=document.createElement('div');d.className='logrow';d.innerHTML=t+'<span class="badge">'+s+'</span>';e.prepend(d)}function timeline(x,n){document.querySelectorAll('.time').forEach(a=>a.classList.remove('active'));x.classList.add('active');document.getElementById('timelineName').textContent=n;add('Timeline selected: '+n,'ACTIVE')}function light(on){add('Light command: '+(on?'ON':'OFF'),'SIMULATION');alert((on?'ON':'OFF')+' command simulated — no real device contacted.')}function remote(){add('Remote-view session opened','SIMULATION');alert('Remote view demo opened — a real feed requires an authorized camera/device API.')}function tab(b,n){document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');add('Module opened: '+n.toUpperCase(),'ACTIVE')}function openModal(){document.getElementById('modal').classList.add('show')}function closeModal(){document.getElementById('modal').classList.remove('show')}</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solar Throne — Wave Containment</title>
+  <style>
+    :root { --bg:#060707; --panel:#11130f; --gold:#ffd65a; --orange:#ff8b38; --muted:#aaa693; --safe:#6ee7a8; --line:#4c431e; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:#faf6e7; font-family:Inter,system-ui,sans-serif; background:radial-gradient(circle at 50% -10%,#806112 0,transparent 26rem),radial-gradient(circle at 50% 110%,#35140c,transparent 34rem),var(--bg); }
+    main { width:min(1100px,calc(100% - 2rem)); margin:auto; padding:2rem 0 3rem; }
+    .top,.readout,.controls,.event { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .top { border-bottom:1px solid var(--line); padding-bottom:1.25rem; }
+    .brand { font-weight:900; letter-spacing:.14em; font-size:clamp(1rem,3vw,1.45rem); }
+    .brand b,.solar { color:var(--gold); }
+    .tag,.badge { border:1px solid #657b40; border-radius:999px; padding:.35rem .65rem; color:var(--safe); font-size:.72rem; font-weight:800; letter-spacing:.08em; }
+    .hero { display:grid; grid-template-columns:1.05fr .95fr; gap:2rem; align-items:center; padding:clamp(2.25rem,7vw,5.5rem) 0 2.5rem; }
+    .eyebrow { color:var(--gold); font-size:.8rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+    h1 { margin:.65rem 0 1rem; max-width:700px; font-size:clamp(2.7rem,8vw,6rem); line-height:.88; letter-spacing:-.07em; }
+    .lede { max-width:560px; color:var(--muted); line-height:1.7; }
+    .orb { position:relative; aspect-ratio:1; max-width:380px; margin:auto; border-radius:50%; background:radial-gradient(circle at 38% 34%,#fffbd1 0 3%,#ffe579 11%,#f8a629 32%,#c84d11 60%,#3c1209 73%,transparent 74%); box-shadow:0 0 32px #ff991166,0 0 120px #f06c183d; animation:breathe 3s ease-in-out infinite; }
+    .orb::before,.orb::after { content:""; position:absolute; inset:-8%; border:1px solid #ffc64466; border-radius:48% 52% 46% 54%; animation:spin 9s linear infinite; }
+    .orb::after { inset:-18%; border-color:#ff773433; animation-direction:reverse; animation-duration:14s; }
+    .panel { border:1px solid var(--line); border-radius:22px; padding:1.25rem; background:linear-gradient(140deg,#16160fdd,#0b0c0ae8); box-shadow:0 20px 60px #0007; }
+    .grid { display:grid; grid-template-columns:1.35fr .65fr; gap:1rem; }
+    h2,p { margin:0; } h2 { font-size:1.12rem; }
+    .wave { position:relative; height:110px; margin:1.5rem 0 .6rem; overflow:hidden; border-radius:12px; background:repeating-linear-gradient(0deg,transparent 0 16px,#ffd65a1c 17px 18px); }
+    .wave i { position:absolute; left:-20%; bottom:10%; width:140%; height:3px; background:var(--gold); box-shadow:0 0 16px 4px var(--orange); transform:rotate(-7deg); animation:surge 2.3s ease-in-out infinite; }
+    .readout { border-top:1px solid #3d391f; padding-top:1rem; font-size:.9rem; } .muted { color:var(--muted); } .power { color:var(--gold); font-size:1.35rem; font-weight:900; }
+    .containment { display:grid; gap:1.2rem; align-content:center; min-height:100%; } .shield { font-size:3.3rem; text-align:center; }
+    button { border:1px solid #a77d22; border-radius:10px; padding:.75rem 1rem; background:#211908; color:#fff5cf; cursor:pointer; font:inherit; font-weight:800; } button:hover,button:focus-visible { border-color:#fff0a7; outline:none; } button.primary { background:linear-gradient(135deg,#ffc13a,#e66a20); color:#251300; }
+    .notice { margin-top:1rem; border-left:3px solid var(--safe); padding:.75rem .9rem; color:#c8d4c2; background:#12201770; font-size:.9rem; line-height:1.5; }
+    .event-log { margin-top:1rem; } .event { border-top:1px solid #302d1d; padding:.75rem 0; color:#d6d2bf; font-size:.88rem; }
+    .event:first-of-type { margin-top:.65rem; } .event time { color:#85816e; font-variant-numeric:tabular-nums; }
+    .footer { padding-top:1.3rem; text-align:center; color:#777462; font-size:.78rem; }
+    @keyframes breathe { 50% { transform:scale(1.035); box-shadow:0 0 48px #ffbb3266,0 0 150px #f06c1855; } } @keyframes spin { to { transform:rotate(360deg); } } @keyframes surge { 50% { transform:translateY(-38px) rotate(-7deg); opacity:.55; } }
+    @media (max-width:720px) { .hero,.grid { grid-template-columns:1fr; } .hero { padding-top:3rem; } .orb { width:70%; } .top { align-items:flex-start; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="top"><div class="brand">SOLAR <b>THRONE</b></div><span class="tag">● FICTIONAL DISPLAY</span></header>
+    <section class="hero" aria-labelledby="title">
+      <div><p class="eyebrow">Wave containment console</p><h1 id="title">SOLAR WAVE<br><span class="solar">POWER BLAST</span></h1><p class="lede">A cinematic visualization of a stellar pulse meeting a protected, simulated perimeter. This screen is for fictional storytelling only—no real systems, targets, or devices are connected.</p></div>
+      <div class="orb" aria-label="Animated illustration of a solar energy source" role="img"></div>
+    </section>
+    <section class="grid" aria-label="Solar wave simulation controls">
+      <article class="panel"><div class="readout"><div><h2>Wavefront telemetry</h2><span class="muted">Visual simulation</span></div><span class="badge" id="state">STANDBY</span></div><div class="wave" aria-hidden="true"><i></i></div><div class="readout"><span class="muted">Pulse intensity</span><strong class="power" id="power">0.00 PW</strong></div><div class="controls" style="margin-top:1.25rem"><button class="primary" id="simulate" type="button">Simulate solar wave</button><button id="reset" type="button">Reset display</button></div></article>
+      <aside class="panel containment"><div class="shield" aria-hidden="true">🛡️</div><div><h2>EMP safety perimeter</h2><p class="muted" style="margin-top:.45rem;line-height:1.55">Shield status remains a visual safeguard. The simulation cannot emit, direct, or control electromagnetic energy.</p></div><div class="notice">All interactions are local, decorative UI state changes. No external requests are made.</div></aside>
+    </section>
+    <section class="panel event-log" aria-labelledby="log-title"><h2 id="log-title">Event stream</h2><div id="events"><div class="event"><span>Console initialized</span><time>LOCAL / READY</time></div></div></section>
+    <p class="footer">Chrono Sentinel Universe · Fictional solar-wave interface · Simulation only</p>
+  </main>
+  <script>
+    const power = document.querySelector('#power');
+    const state = document.querySelector('#state');
+    const events = document.querySelector('#events');
+    let timer;
+    const log = (message, label) => {
+      const row = document.createElement('div'); row.className = 'event';
+      row.innerHTML = `<span>${message}</span><time>LOCAL / ${label}</time>`; events.prepend(row);
+    };
+    const reset = () => { clearInterval(timer); power.textContent = '0.00 PW'; state.textContent = 'STANDBY'; log('Wave display reset', 'STANDBY'); };
+    document.querySelector('#simulate').addEventListener('click', () => {
+      clearInterval(timer); let value = 0; state.textContent = 'SIMULATING'; log('Solar-wave visualization started', 'SIMULATION');
+      timer = setInterval(() => { value = Math.min(value + 0.37, 3.70); power.textContent = `${value.toFixed(2)} PW`; if (value >= 3.7) { clearInterval(timer); state.textContent = 'CONTAINED'; log('Pulse visualization contained by fictional perimeter', 'SAFE'); } }, 90);
+    });
+    document.querySelector('#reset').addEventListener('click', reset);
+  </script>
+</body>
+</html>
